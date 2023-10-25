@@ -1,7 +1,3 @@
-#
-# Example library of macros.
-#
-
 # Печать содержимого регистра как целого
 .macro print_int (%x)
 	li a7, 1
@@ -9,11 +5,11 @@
 	ecall
 .end_macro
 
-   .macro print_imm_int (%x)
+.macro print_imm_int (%x)
    li a7, 1
    li a0, %x
    ecall
-   .end_macro
+.end_macro
 
 # Ввод целого числа с консоли в регистр a0
 .macro read_int_a0
@@ -31,7 +27,7 @@
    pop	(a0)
 .end_macro
 
-   .macro print_str (%x)
+.macro print_str (%x)
    .data
 str:
    .asciz %x
@@ -68,5 +64,48 @@ str:
 # Выталкивание значения с вершины стека в регистр
 .macro pop(%x)
 	lw	%x, (sp)
+	addi	sp, sp, 4
+.end_macro
+
+#__________________________________________________
+
+# prints double passed through %x register
+.macro print_double (%x)
+	li a7, 3
+	fmv.d fa0, %x
+	ecall
+.end_macro
+
+#prints double passed as an immedeate
+.macro print_imm_double (%x)
+   li a7, 3
+   li fa0, %x
+   ecall
+.end_macro
+
+# reads a double to a0
+.macro read_double_a0
+   li a7, 7
+   ecall
+.end_macro
+
+# reads a double to %x register
+.macro read_double(%x)
+   fpush	(fa0)
+   li a7, 7
+   ecall
+   fmv.d %x, fa0
+   fpop		(fa0)
+.end_macro
+
+# pushes a value with floating point to stack
+.macro fpush(%x)
+	addi	sp, sp, -4
+	fsw	%x, (sp)
+.end_macro
+
+# gets a value with floating point from stack
+.macro fpop(%x)
+	flw	%x, (sp)
 	addi	sp, sp, 4
 .end_macro
