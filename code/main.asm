@@ -8,6 +8,8 @@ interval_start:	.double
 interval_end:	.double
 
 .text
+.global	main
+main:
 # prompt for begining of program
 print_str("function y = a + b*x^3 is going to be inegrated \n")
 
@@ -31,10 +33,10 @@ print_str(") + (")
 print_double(ft2)
 print_str(")*x^3\n")
 
-fsw	ft1, par_a, t0
-fsw	ft2, par_b, t0
-fsw	ft3, interval_start, t0
-fsw	ft4, interval_end, t0
+fsd	ft1, par_a, t0
+fsd	ft2, par_b, t0
+fsd	ft3, interval_start, t0
+fsd	ft4, interval_end, t0
 
 fmv.d	fa0, ft1		# passing a as an argument
 fmv.d	fa1, ft2		# passing b as an argument

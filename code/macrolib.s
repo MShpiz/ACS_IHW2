@@ -100,12 +100,12 @@ str:
 
 # pushes a value with floating point to stack
 .macro fpush(%x)
-	addi	sp, sp, -4
-	fsw	%x, (sp)
+	addi	sp, sp, -8
+	fsd	%x, (sp)
 .end_macro
 
 # gets a value with floating point from stack
 .macro fpop(%x)
-	flw	%x, (sp)
-	addi	sp, sp, 4
+	fld	%x, (sp)
+	addi	sp, sp, 8
 .end_macro
