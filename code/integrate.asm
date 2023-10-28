@@ -48,19 +48,25 @@ precision_neg:	.double -0.0001
 		fdiv.d	ft1, ft1, ft5		# make step twice less
 		fmv.d	ft2, fs2		# current position
 		fcvt.d.w	ft6, zero 	# result of integration with current step
+		
 		loop:
 			
 			fmul.d	ft3, ft2, ft2		# calculating height of rectangle in current position
 			fmul.d	ft3, ft3, ft2
-			fmadd.d ft3, ft3, fs1, fs0
 			
-			fmul.d	ft4, ft3, ft1		# calculating area of current rectangle
-			fadd.d	ft6, ft6, ft4		# adding it to the result
+			fmul.d	ft3, ft3, fs1
+			fadd.d	ft3, ft3, fs0
+			
+			#fmadd.d ft3, ft3, fs1, fs0	# works wierdly with negative numbers
+			
+			
+			fadd.d	ft6, ft6, ft3		# adding it to the result
 			
 			fadd.d	ft2, ft2, ft1		# moving to next position
 			fge.d	t2, ft2, fs3
 			beqz	t2, loop
 			
+		fmul.d	ft6, ft6, ft1		
 		fsub.d	ft5, ft0, ft6			# if difference between current result and previous result
 		
 		fld	ft3,  precision_pos, t1		# is less than precision, end cycle
