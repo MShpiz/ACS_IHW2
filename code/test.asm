@@ -26,6 +26,11 @@ test_5_par_b:	.double		1.0
 test_5_interval_start:	.double	-1.0
 test_5_interval_end:	.double	1.0
 
+test_6_par_a:	.double		0.0
+test_6_par_b:	.double		1.0
+test_6_interval_start:	.double	-1.0
+test_6_interval_end:	.double	1.0
+
 test:
 print_str("test 1\n")
 fld	fa0, test_1_par_a, t0
@@ -48,18 +53,26 @@ fld	fa2, test_3_interval_start, t0
 fld	fa3, test_3_interval_end, t0
 jal onetest
 
+print_str("test 4\n")
 fld	fa0, test_4_par_a, t0
 fld	fa1, test_4_par_b, t0
 fld	fa2, test_4_interval_start, t0
 fld	fa3, test_4_interval_end, t0
 jal onetest
 
+print_str("test 5\n")
 fld	fa0, test_5_par_a, t0
 fld	fa1, test_5_par_b, t0
 fld	fa2, test_5_interval_start, t0
 fld	fa3, test_5_interval_end, t0
 jal onetest
 
+print_str("test 6\n")
+fld	fa0, test_6_par_a, t0
+fld	fa1, test_6_par_b, t0
+fld	fa2, test_6_interval_start, t0
+fld	fa3, test_6_interval_end, t0
+jal onetest
 exit
 
 onetest:

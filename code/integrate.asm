@@ -73,8 +73,8 @@ precision_neg:	.double -0.0001
 		j	stepLoop		
 	
 	finish_integrate:
-	beqz	t0, end_func			# if initial start was greater than end result of
-						# integration should be nagetive
+	beqz	t0, end_func			# if initial start was greater than end 
+						# result of integration should be nagetive
 	li	t1, -1
 	fcvt.d.w	ft1, t1
 	fmul.d		ft0, ft0, ft1
