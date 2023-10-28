@@ -72,7 +72,7 @@ precision_neg:	.double -0.0001
 	fcvt.d.w	ft1, t1
 	fmul.d		ft0, ft0, ft1
 	end_func:
-	fmv.d	fa0, ft0			# returning the result of integration
+	fmv.d	fa0, ft0			# returning the result of integration to fa0
 	fpop(fs3)
 	fpop(fs2)
 	fpop(fs1)

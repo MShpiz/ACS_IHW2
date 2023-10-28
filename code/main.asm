@@ -44,5 +44,5 @@ fmv.d	fa2, ft3			# passing begining of interval as an argument
 fmv.d	fa3, ft4			# passing end of interval as an argument
 jal integrate
 print_str("Result: ")
-print_double(fa0)
+print_double(fa0)		# result returned to fa0
 exit
