@@ -26,20 +26,7 @@ precision_neg:	.double -0.0001
 	fmv.d	fs2,fs3
 	fmv.d	fs3,ft6
 	
-	integrationProcess:
-	fld	ft6, precision_pos, t1
-	fld	ft4, precision_neg, t1
-	flt.d	t1, fs1, ft6
-	fgt.d	t2, fs1, ft4	
-	and	t1, t1, t2
-	
-	beqz	t1, rectangle_method		# if b is close to zero the area is equal length of interval*a
-					# else calculate the area the normal way 
-	fsub.d	ft1, fs3, fs2
-	fmul.d	ft0, fs0, ft1		# put the result in ft0
-	j	finish_integrate
-	
-	rectangle_method:
+	integrationProcess:			
 	fcvt.d.w	ft0, zero 	# result of integration
 	fsub.d	ft1, fs3, fs2		# current step
 	stepLoop:
