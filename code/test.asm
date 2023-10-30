@@ -122,28 +122,18 @@ jal onetest
 exit
 
 onetest:
-push(ra)
-fpush(fa0)
-fpush(fa1)
-fpush(fa2)
-fpush(fa3)
-print_str("y = (")
-print_double(fa0)
-print_str(") + (")
-print_double(fa1)
-print_str(")*x^3\n")
-print_str("on interval [")
-print_double(fa2)
-print_str("; ")
-print_double(fa3)
-print_str("] \n")
-fpop(fa3)		# passing end of interval as an argument
-fpop(fa2)		# passing begining of interval as an argument
-fpop(fa1)		# passing b as an argument
-fpop(fa0)		# passing a as an argument
-jal integrate
-print_str("Result: ")
-print_double(fa0)	# result returned to fa0
-print_str("\n\n")
-pop(ra)
+	push(ra)
+	fpush(fa0)		# pushing arguments to stack, to use them later for next function
+	fpush(fa1)
+	fpush(fa2)
+	fpush(fa3)	
+	jal print_equation	# passing a - a0, b - a1, start - a2, end - a3
+	fpop(fa3)		
+	fpop(fa2)		
+	fpop(fa1)		
+	fpop(fa0)		
+	jal integrate		# passing a - a0, b - a1, start - a2, end - a3
+	jal print_result	# passing result of integration by a0
+	
+	pop(ra)
 ret

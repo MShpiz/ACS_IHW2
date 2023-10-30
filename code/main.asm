@@ -26,13 +26,6 @@ read_double(ft3)
 print_str("enter ending point: ")
 read_double(ft4)
 
-# printing the entered function
-print_str("y = (")
-print_double(ft1)
-print_str(") + (")
-print_double(ft2)
-print_str(")*x^3\n")
-
 fsd	ft1, par_a, t0
 fsd	ft2, par_b, t0
 fsd	ft3, interval_start, t0
@@ -42,7 +35,15 @@ fmv.d	fa0, ft1		# passing a as an argument
 fmv.d	fa1, ft2		# passing b as an argument
 fmv.d	fa2, ft3			# passing begining of interval as an argument
 fmv.d	fa3, ft4			# passing end of interval as an argument
-jal integrate
-print_str("Result: ")
-print_double(fa0)		# result returned to fa0
+
+jal print_equation
+
+fld	ft1, par_a, t0		# passing a as an argument
+fld	ft2, par_b, t0		# passing b as an argument
+fld	ft3, interval_start, t0	# passing begining of interval as an argument
+fld	ft4, interval_end, t0	# passing end of interval as an argument
+
+jal integrate			# result of integration returns in a0
+
+jal print_result	# passing result of integration by a0
 exit

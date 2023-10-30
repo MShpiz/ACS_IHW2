@@ -98,13 +98,13 @@ str:
    fpop		(fa0)
 .end_macro
 
-# pushes a value with floating point to stack
+# pushes a double to stack
 .macro fpush(%x)
 	addi	sp, sp, -8
 	fsd	%x, (sp)
 .end_macro
 
-# gets a value with floating point from stack
+# gets a double  from stack
 .macro fpop(%x)
 	fld	%x, (sp)
 	addi	sp, sp, 8
