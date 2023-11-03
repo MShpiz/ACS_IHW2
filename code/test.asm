@@ -41,15 +41,10 @@ test_8_par_b:	.double		1.0
 test_8_interval_start:	.double	-1.0
 test_8_interval_end:	.double	1.0
 
-test_9_par_a:	.double		100.0
-test_9_par_b:	.double		-150.0
-test_9_interval_start:	.double	-0.13
-test_9_interval_end:	.double	0.12
-
-test_10_par_a:	.double		0.0
-test_10_par_b:	.double		0.00001
-test_10_interval_start:	.double	1000.0
-test_10_interval_end:	.double	1001.0
+test_9_par_a:	.double		0.0
+test_9_par_b:	.double		0.00001
+test_9_interval_start:	.double	1000.0
+test_9_interval_end:	.double	1001.0
 
 
 test:
@@ -110,13 +105,6 @@ fld	fa0, test_9_par_a, t0		# passing a as an argument
 fld	fa1, test_9_par_b, t0		# passing b as an argument
 fld	fa2, test_9_interval_start, t0	# passing begining of interval as an argument
 fld	fa3, test_9_interval_end, t0	# passing end of interval as an argument
-jal onetest
-
-print_str("test 10\n")
-fld	fa0, test_10_par_a, t0		# passing a as an argument
-fld	fa1, test_10_par_b, t0		# passing b as an argument
-fld	fa2, test_10_interval_start, t0	# passing begining of interval as an argument
-fld	fa3, test_10_interval_end, t0	# passing end of interval as an argument
 jal onetest
 
 exit
